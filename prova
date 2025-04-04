@@ -1,6 +1,7 @@
 classe client (id , nome)
 
-classe palestra 
+classe palestra
+ orari palestra
  iscrizione in palestra
  partecipare ai corsi disponibili
  
