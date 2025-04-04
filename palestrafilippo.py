@@ -1,95 +1,118 @@
 class Cliente:  
-    def __init__(self, nome, cognome, eta):
-        # Inizializza un cliente con nome, cognome ed età
+    def __init__(self, nome, cognome, eta, password, id_cliente):
+        # Inizializza un cliente con nome, cognome, età e password
         self.nome = nome
         self.cognome = cognome
         self.eta = eta
-        self.registrato = False  # Indica se il cliente è registrato
+        self.password = password
+        self.id = id_cliente
         self.corsi = []  # Lista dei corsi a cui il cliente è iscritto
 
 class Palestra:
     def __init__(self):
         # Dizionario dei corsi disponibili con i posti rimanenti
-        self.corsi = {"Aqua-Gym": 10, 
-                      "Preparazione Gare": 10, 
-                      "Bimbi-Time": 10}
+        self.corsi = {
+            "Aqua-Gym": 10, 
+            "Preparazione Gare": 10, 
+            "Bimbi-Time": 10
+        }
         self.id = 0  # Identificatore unico per i clienti
-        self.listaClienti = [1]  # Lista per memorizzare i clienti registrati
-        
+        self.listaClienti = {}  # Dizionario per memorizzare i clienti con ID
+    
     def iscrizione_palestra(self):
         # Metodo per iscrivere un nuovo cliente alla palestra
         self.id += 1  # Incrementa l'ID per ogni nuovo cliente
         
         # Richiesta dati all'utente
         nome = input("Inserisci qui il tuo nome: ")
-        nome2 = []
         cognome = input("Inserisci qui il tuo cognome: ")
         eta = int(input("Inserisci qui la tua età: "))
         password = input("Inserisci la tua password: ")
         
         # Creazione dell'oggetto cliente
-        n = Cliente(nome, cognome, eta)
-        print(f"Ottimo, sei registrato, il tuo id è {self.id}")
+        cliente = Cliente(nome, cognome, eta, password, self.id)
+        self.listaClienti[self.id] = cliente  # Salva il cliente nel dizionario
         
-        nome2.append(password)  # Memorizza la password (errore: non viene utilizzata correttamente)
-        self.listaClienti.append(nome)  # Memorizza solo il nome del cliente (errore: non salva password o ID correttamente)
-        
+        print(f"Ottimo, sei registrato! Il tuo ID è {self.id}")
+    
     def loggin(self):
         # Metodo per effettuare il login
-        id = int(input("Inserisci il tuo id: "))
-        password = input("Inserisci la tua password:")    
-        
+        id_cliente = int(input("Inserisci il tuo ID: "))
+        password = input("Inserisci la tua password: ")    
+
         # Verifica delle credenziali
-        if self.listaClienti[id][0] == password:
-            print("Loggin avvenuto con successo")
-            return True
+        if id_cliente in self.listaClienti and self.listaClienti[id_cliente].password == password:
+            print("Login avvenuto con successo!")
+            return id_cliente
         print("Tentativo fallito")
-        return False
-            
-    def prenotazione_corsi(self):
+        return None
+    
+    def prenotazione_corsi(self, id_cliente):
         # Metodo per prenotare un corso
+        if id_cliente not in self.listaClienti:
+            print("Errore: utente non trovato.")
+            return
+        
         while True:
-            iscrizione = int(input("A quale corso vuoi partecipaere?\nAcqua-Gym(1)\nPreparazione Gare (2)\nBimbi-Time(3)\nVisualizza i posti disponibili di ogni corso(4)\n"))
+            iscrizione = int(input("A quale corso vuoi partecipare?\n1. Aqua-Gym\n2. Preparazione Gare\n3. Bimbi-Time\n4. Visualizza i posti disponibili\n5. Esci\n"))
             
             match iscrizione:
                 case 1:
-                    if self.corsi["Aqua-Gym"] - 1 >= 0:
-                        print("Prenotazione effettuata")
-                        self.corsi["Aqua-Gym"] - 1  # Errore: non aggiorna il valore
+                    if self.corsi["Aqua-Gym"] > 0:
+                        self.corsi["Aqua-Gym"] -= 1
+                        self.listaClienti[id_cliente].corsi.append("Aqua-Gym")
+                        print("Prenotazione effettuata con successo per Aqua-Gym!")
                     else:
-                        print("Impossibile effettuare la prenotazione, posti non disponibili")
+                        print("Posti non disponibili per Aqua-Gym.")
+                
                 case 2:
-                    if self.corsi["Preparazione Gare"] - 1 > 0:
-                        print("Prenotazione effettuata")
-                        self.corsi["Preparazione Gare"] - 1  # Errore: non aggiorna il valore
+                    if self.corsi["Preparazione Gare"] > 0:
+                        self.corsi["Preparazione Gare"] -= 1
+                        self.listaClienti[id_cliente].corsi.append("Preparazione Gare")
+                        print("Prenotazione effettuata con successo per Preparazione Gare!")
+                    else:
+                        print("Posti non disponibili per Preparazione Gare.")
+                
                 case 3:
-                    if self.corsi["Bimbi-Time"] - 1 >= 0:
-                        print("Prenotazione effettuata")
-                        self.corsi["Bimbi-Time"] - 1  # Errore: non aggiorna il valore
+                    if self.corsi["Bimbi-Time"] > 0:
+                        self.corsi["Bimbi-Time"] -= 1
+                        self.listaClienti[id_cliente].corsi.append("Bimbi-Time")
+                        print("Prenotazione effettuata con successo per Bimbi-Time!")
+                    else:
+                        print("Posti non disponibili per Bimbi-Time.")
+                
                 case 4:
-                    cosafare = input(f"{self.corsi}, sei interessato a prenotarne uno? (s/n)").lower()
-                    if cosafare != 's':
-                        break
+                    print(f"Posti disponibili per i corsi: {self.corsi}")
+                
+                case 5:
+                    print("Uscita dalla prenotazione corsi.")
+                    break
+                
                 case _:
-                    print("Scelta non valida")
-            
-# Creazione di un cliente e della palestra
-cliente = Cliente("filippo", "pluto", 12)
+                    print("Scelta non valida. Riprova.")
+                    
+# Creazione dell'oggetto Palestra
 palestra = Palestra()
 
 def menu():
     # Menu principale per interagire con l'utente
     while True:
-        whatdo = int(input("Cosa vuoi fare?\nIscriverti alla palestra(1)\nIscriverti ad un corso(2)\n"))
+        whatdo = int(input("Cosa vuoi fare?\n1. Iscriverti alla palestra\n2. Iscriverti a un corso\n3. Esci\n"))
         
         match whatdo:
             case 1:
-                Palestra.iscrizione_palestra()  # Errore: chiamata non corretta
+                palestra.iscrizione_palestra()
+            
             case 2:
-                iscritto = Palestra.loggin()  # Errore: chiamata non corretta
-                if iscritto:
-                    Palestra.prenotazione_corsi()  # Errore: chiamata non corretta
+                id_cliente = palestra.loggin()
+                if id_cliente:
+                    palestra.prenotazione_corsi(id_cliente)
+            
+            case 3:
+                print("Uscita dal programma.")
+                break
+            
             case _:
-                break    
+                print("Scelta non valida, riprova.")
 
 menu()
