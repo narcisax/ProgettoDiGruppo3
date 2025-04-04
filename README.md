@@ -1,4 +1,5 @@
-# Sistema di gestione di una PALESTRA DI NUOTO
+<h1 align="left">AQUA SCRIPTS GYM 🌐💦 </h1>
+<h3> Debugga il tuo stile di nuoto!</h3>
 
 ## Descrizione
 Questo progetto è un sistema di gestione per una palestra sviluppato in Python. Permette di gestire gli iscritti, le prenotazioni delle lezioni e i pagamenti.
