@@ -1,1 +1,7 @@
-prova
+classe client (id , nome, cognome, eta, iscrizione)
+entrata e uscita()
+
+classe palestra
+ orari palestra
+ iscrizione in palestra
+ partecipare ai corsi disponibili
