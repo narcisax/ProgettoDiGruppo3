@@ -2,8 +2,7 @@
 
 
 ## Descrizione
-Questo progetto è un sistema di gestione per una palestra sviluppato in Python. Permette di gestire gli iscritti, le prenotazioni delle lezioni e i pagamenti.
-
+Questo progetto è un sistema di gestione per una palestra sviluppato in Python. Permette di gestire gli iscritti e le prenotazioni delle lezioni
 ## Funzionalità
 - Registrazione e gestione degli utenti
 - Gestione delle iscrizioni
