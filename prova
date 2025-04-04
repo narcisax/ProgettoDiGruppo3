@@ -1,1 +1,6 @@
-prova
+classe client (id , nome)
+
+classe palestra 
+ iscrizione in palestra
+ partecipare ai corsi disponibili
+ 
