@@ -4,13 +4,13 @@
 <h2>Descrizione</h2>
 Questo progetto è un sistema di gestione per una palestra sviluppato in Python. Permette di gestire gli iscritti e le prenotazioni delle lezioni.
 
-## Funzionalità
+## Funzionalità 🧠
 - Registrazione e gestione degli utenti
 - Gestione delle iscrizioni
 - Prenotazione e gestione dei corsi
 - Generazione di report sulle attività
 
-<h2> Spiegazione del codice </h2>
+<h2> Spiegazione del codice 🧩 </h2>
 Il codice implementa un sistema di gestione per una palestra con le seguenti classi e funzionalità principali:
 <p>
 Classe `Cliente`
@@ -38,9 +38,9 @@ Fornisce un'interfaccia testuale per interagire con il sistema, permettendo agli
 3. Uscire dal programma.
 </p>
 
-## Requisiti
+## Requisiti ⚙️
 Assicurati di avere installato:
 - Python 3.10+
 
-## Contributi
+## Contributi 👨‍💻 
 Filippo Giorgio Rondò, Simone Verrengia, Liliana Gilca, Isabella Ponticelli
