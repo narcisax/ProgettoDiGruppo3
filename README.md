@@ -22,9 +22,9 @@ Questa classe rappresenta un cliente della palestra con i seguenti attributi:
 
 Classe `Palestra`
 Questa classe gestisce la logica della palestra e include:
-- Un dizionario `corsi` con i corsi disponibili e i posti rimanenti.
-- Un identificatore unico `id` per assegnare nuovi clienti.
-- Un dizionario `listaClienti` per memorizzare i clienti registrati.
+1. Un dizionario `corsi` con i corsi disponibili e i posti rimanenti.
+2. Un identificatore unico `id` per assegnare nuovi clienti.
+3. Un dizionario `listaClienti` per memorizzare i clienti registrati.
 
 Le principali funzionalità della classe sono:
 1. **`iscrizione_palestra()`**: permette di registrare nuovi clienti.
